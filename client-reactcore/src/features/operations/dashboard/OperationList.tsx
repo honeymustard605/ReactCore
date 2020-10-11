@@ -2,11 +2,12 @@ import React from 'react';
 import { Item, Image, Button, Label, Segment } from 'semantic-ui-react';
 import {IOperation } from '../../../models/operation';
 interface IProps {
-    operations: IOperation[]
+    operations: IOperation[];
+    selectOperation: (id: string) => void;
 }
 
 
-const OperationList: React.FC<IProps> = ({operations}) => {
+const OperationList: React.FC<IProps> = ({operations, selectOperation}) => {
     return (
         <Segment clearing>
             <Item.Group divided>
@@ -22,7 +23,8 @@ const OperationList: React.FC<IProps> = ({operations}) => {
                 <div>{operation.city}, {operation.venue}</div>
                        </Item.Description>
                        <Item.Extra>
-                           <Button floated='right' content='View' color='blue'/>
+                           <Button onClick={() => selectOperation(operation.id)} floated='right'
+                            content='View' color='blue'/>
                            <Label basic content={operation.category} />
                        </Item.Extra>
                      </Item.Content>
